@@ -42,7 +42,7 @@
                         <f:GridContainerSettings id="layout"  rowSize="110px" columnSize="120px" gap="8px" />
                     </f:layout>
                     <f:layoutXS>
-                        <f:GridContainerSettings id="layoutXS" rowSize="80px" columnSize="84px" gap="8px" />
+                        <f:GridContainerSettings id="layoutXS" rowSize="80px" columnSize="85px" gap="8px" />
                     </f:layoutXS>
                     <f:Card id="cardTemp">
                         <f:layoutData>
@@ -132,7 +132,7 @@
                                 iconSrc="sap-icon://BusinessSuiteInAppSymbols/icon-allergies"/>            
                         </f:header>
                        <f:content>
-                            <VBox id="Vboxfooter" backgroundDesign="Solid"  height="92%" width="100%">
+                            <VBox id="Vboxfooter" backgroundDesign="Solid"  height="93%" width="100%">
                                 <smartchart:SmartChart id ="smartChartParticulate" enableAutoBinding="true" 
                                     entitySet="v_ambientalParticulateIOT" useVariantManagement="true"
                                     smartVariant="pageVariantId"
