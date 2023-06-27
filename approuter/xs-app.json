@@ -1,0 +1,18 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "source": "^/v2/catalog/(.*)$",
+      "target": "/v2/catalog/$1",
+      "destination": "sapxpsp",
+      "authenticationType": "none",
+      "csrfProtection": false
+    },
+    {
+      "source": "(.*)",
+      "target": "/sapxpspappenvirodash/$1",
+      "service": "html5-apps-repo-rt"
+    }
+  ]
+}

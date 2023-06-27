@@ -1,0 +1,157 @@
+<mvc:View 
+    controllerName="sapxpsp.app.envirodash.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:card="sap.f.cards"
+    xmlns:webc="sap.ui.webc.main"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:smartchart="sap.ui.comp.smartchart"
+    xmlns:smartVariantManagement="sap.ui.comp.smartvariants"
+    xmlns:sl="sap.ui.comp.navpopover"
+    xmlns:si="sap.suite.ui.commons.statusindicator" 
+    xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <Page id="page" title="{i18n>title}" titleAlignment="Center">
+        <content> 
+        	<HBox id="HBOXVARIANT" class="exPageVariantPadding">
+                <smartVariantManagement:SmartVariantManagement
+                    id="pageVariantId"
+                    persistencyKey="PageVariantPKey"
+                    visible="false"/>
+            </HBox>
+            <VBox id="HBOX" alignItems="Center" alignContent="Center"  justifyContent="Center" >
+            <ScrollContainer		
+                height="100%"
+                width="100%"
+                vertical="true"
+                
+                id="scrollContainer">
+
+                <f:GridContainer
+                    id="grid1"
+                    class="sapUiSmallMargin" 
+                    snapToRow="true"
+
+
+                    
+                    >
+                    <f:layout>
+                        <f:GridContainerSettings id="layout"  rowSize="110px" columnSize="120px" gap="8px" />
+                    </f:layout>
+                    <f:layoutXS>
+                        <f:GridContainerSettings id="layoutXS" rowSize="80px" columnSize="84px" gap="8px" />
+                    </f:layoutXS>
+                    <f:Card id="cardTemp">
+                        <f:layoutData>
+					        <f:GridContainerItemLayoutData id="layoutCardTemp" rows="2" minRows="2"  columns="2" />
+				        </f:layoutData>                    
+                        <f:header>
+                            <card:Header id="cardHeaderTemp"
+                                title="{i18n>tempTitle}"
+                                iconSrc="sap-icon://temperature"/>            
+                        </f:header>
+                        <f:content>
+                            <l:Grid id="id_GaugeTemp"/>
+                        </f:content>
+                    </f:Card>  
+                    <f:Card id="cardHum">
+                        <f:layoutData>
+					        <f:GridContainerItemLayoutData id="layoutCardHum" rows="2" minRows="2" columns="2" />
+				        </f:layoutData>                    
+                        <f:header>
+                            <card:Header id="cardHeaderHum"
+                                title="{i18n>humTitle}"
+                                iconSrc="sap-icon://blur"/>            
+                        </f:header>
+                        <f:content>
+                            <l:Grid id="id_GaugeHum" class=""/>
+                        </f:content>
+                    </f:Card> 
+                    <f:Card id="cardGas">
+                        <f:layoutData>
+					        <f:GridContainerItemLayoutData id="layoutCardGas" rows="2" minRows="2" columns="2" />
+				        </f:layoutData>
+                        <f:header>
+                            <card:Header id="cardHeaderGas"
+                                title="{i18n>gasTitle}"
+                                iconSrc="sap-icon://BusinessSuiteInAppSymbols/icon-gas"/>            
+                        </f:header>
+                        <f:content>
+                             <l:Grid id="id_GaugeGas" />
+                        </f:content>
+                    </f:Card>          
+                    <f:Card id="cardPressure">
+                        <f:layoutData>
+					        <f:GridContainerItemLayoutData id="layoutCardPressure" rows="2" minRows="2" columns="2" />
+				        </f:layoutData>                    
+                        <f:header>
+                            <card:Header id="cardHeaderPressure"
+                                title="{i18n>pressureTitle}"
+                                iconSrc="sap-icon://weather-proofing"/>            
+                        </f:header>
+                        <f:content>
+                           <l:Grid id="id_GaugePressure" class=""/> 
+                        </f:content>
+                    </f:Card>
+                    <f:Card id="cardLux" >
+                        <f:layoutData>
+					        <f:GridContainerItemLayoutData id="layoutCardLux" rows="2" minRows="2" columns="2" />
+				        </f:layoutData>                    
+                        <f:header>
+                            <card:Header id="cardHeaderLux"
+                                title="{i18n>luxTitle}"
+                                iconSrc="sap-icon://lightbulb"/>            
+                        </f:header>
+                        <f:content>
+                            <l:Grid id="id_GaugeLux" class=""/>
+                        </f:content>
+                    </f:Card> 
+                    <f:Card id="cardIaq">
+                        <f:layoutData>
+					        <f:GridContainerItemLayoutData id="layoutCardIaq" rows="2" minRows="2" columns="2" />
+				        </f:layoutData>
+                        <f:header>
+                            <card:Header id="cardHeaderIaq"
+                                title="{i18n>iaqTitle}"
+                                iconSrc="sap-icon://BusinessSuiteInAppSymbols/icon-approved"/>            
+                        </f:header>
+                        <f:content>
+                             <l:Grid id="id_GaugeIaq" />
+                        </f:content>
+                    </f:Card>                         
+                    <f:Card id="cardParticulate">
+                        <f:layoutData>
+					        <f:GridContainerItemLayoutData id="layoutCardParticulate" rows="5" minRows="5" columns="12" />
+				        </f:layoutData>
+                        <f:header>  
+                            <card:Header id="cardHeader"
+                                title="{i18n>particulateTitle}"
+                                iconSrc="sap-icon://BusinessSuiteInAppSymbols/icon-allergies"/>            
+                        </f:header>
+                       <f:content>
+                            <VBox id="Vboxfooter" backgroundDesign="Solid"  height="92%" width="100%">
+                                <smartchart:SmartChart id ="smartChartParticulate" enableAutoBinding="true" 
+                                    entitySet="v_ambientalParticulateIOT" useVariantManagement="true"
+                                    smartVariant="pageVariantId"
+                                    persistencyKey="SmartChartKey" useChartPersonalisation="true"
+                                    showFullScreenButton="true" selectionMode="Multi"
+                                    showChartTooltip="true" showDrillBreadcrumbs="false"
+                                    showDetailsButton="false" showDrillButtons="false"
+                                    showSemanticNavigationButton="false"
+                                    legendVisible="true"
+                                    data:dateFormatSettings='\{"pattern": "dd/MM/yy - HH:mm:ss"\}'
+                                    activateTimeSeries="true">
+                                </smartchart:SmartChart> 
+                            </VBox>
+                        </f:content>
+                    </f:Card> 
+                </f:GridContainer>  
+           
+	        </ScrollContainer>  
+            </VBox>          
+        </content>
+    </Page>
+</mvc:View>
